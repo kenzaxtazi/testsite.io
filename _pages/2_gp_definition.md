@@ -1,7 +1,7 @@
 ---
 permalink: /gp/
 title: " 2. Gaussian Processes"
-author_profile: true
+layout: archive
 redirect_from: 
   - /gp/
   - /gp.html

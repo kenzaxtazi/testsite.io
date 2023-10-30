@@ -1,7 +1,7 @@
 ---
 permalink: /introduction/
 title: "1. Introduction"
-author_profile: true
+layout: archive
 redirect_from: 
   - /introduction/
   - /introduction.html

@@ -1,4 +1,11 @@
-# 5. Software
+---
+permalink: /software/
+title: "5. Software"
+layout: archive
+redirect_from:
+- /software/
+- /software.html
+---
 
 __This section needs a more content and systemic analysis of the different options. A table would be nice too. Please feedback if you think I am missing any obvious software packages here.__
 

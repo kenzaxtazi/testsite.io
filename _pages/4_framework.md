@@ -1,6 +1,7 @@
 ---
 permalink: /framework/
 title: "4. Framework"
+layout: archive
 redirect_from:
 - /framework/
 - /framework.html

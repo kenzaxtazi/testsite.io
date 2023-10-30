@@ -1,6 +1,7 @@
 ---
 permalink: /related_work/
 title: "3. Related work"
+layout: archive
 redirect_from:
 - /related_work/
 - /related_work.html
