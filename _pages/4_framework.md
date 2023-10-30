@@ -1,8 +1,6 @@
 ---
 permalink: /framework/
 title: "4. Framework"
-excerpt: " "
-author_profile: true
 redirect_from:
 - /framework/
 - /framework.html

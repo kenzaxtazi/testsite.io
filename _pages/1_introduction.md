@@ -1,7 +1,6 @@
 ---
 permalink: /introduction/
 title: "1. Introduction"
-excerpt: " "
 author_profile: true
 redirect_from: 
   - /introduction/
