@@ -1,22 +1,22 @@
 # main links
 
 sidebar:
-    - title: "About"
-      url: /_pages/about.md
-    - title: "Introduction"
-      url: /_pages/1_introduction.md
-    - title: "Gaussian Processes"
-      url: /_pages/2_gp_definition.md
-    - title: "Related Work"
-      url: /_pages/3_related_work.md
-    - title: "Framework"
-      url: /_pages/4_framework.md
-    - title: "Software"
-      url: /_pages/5_software.md
-    - title: "Case studies"
-      url: /_pages/6_case_studies.md
-    - title: "Discussion"
-      url: /_pages/7_discussion.md
+  - title: "About"
+    url: /_pages/about.md
+  - title: "Introduction"
+    url: /_pages/1_introduction.md
+  - title: "Gaussian Processes"
+    url: /_pages/2_gp_definition.md
+  - title: "Related Work"
+    url: /_pages/3_related_work.md
+  - title: "Framework"
+    url: /_pages/4_framework.md
+  - title: "Software"
+    url: /_pages/5_software.md
+  - title: "Case studies"
+    url: /_pages/6_case_studies.md
+  - title: "Discussion"
+    url: /_pages/7_discussion.md
 
 
   #   url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
