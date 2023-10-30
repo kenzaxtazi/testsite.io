@@ -2,21 +2,21 @@
 
 sidebar:
   - title: "About"
-    url: /_pages/about.md
+    url: /
   - title: "Introduction"
-    url: /_pages/1_introduction.md
+    url: /introduction/
   - title: "Gaussian Processes"
-    url: /_pages/2_gp_definition.md
+    url: /gp/
   - title: "Related Work"
-    url: /_pages/3_related_work.md
+    url: /related_work/
   - title: "Framework"
-    url: /_pages/4_framework.md
+    url: /framework/
   - title: "Software"
-    url: /_pages/5_software.md
+    url: /software/
   - title: "Case studies"
-    url: /_pages/6_case_studies.md
+    url: /case_studies/
   - title: "Discussion"
-    url: /_pages/7_discussion.md
+    url: /discussion/
 
 
   #   url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
