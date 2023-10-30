@@ -2,6 +2,8 @@
 permalink: /introduction/
 title: "1. Introduction"
 layout: archive
+sidebar:
+  nav: "sidebar"
 redirect_from: 
   - /introduction/
   - /introduction.html

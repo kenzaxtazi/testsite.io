@@ -2,6 +2,8 @@
 permalink: /software/
 title: "5. Software"
 layout: archive
+sidebar:
+  nav: "sidebar"
 redirect_from:
 - /software/
 - /software.html

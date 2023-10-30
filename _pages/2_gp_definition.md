@@ -2,6 +2,8 @@
 permalink: /gp/
 title: " 2. Gaussian Processes"
 layout: archive
+sidebar:
+  nav: "sidebar"
 redirect_from: 
   - /gp/
   - /gp.html
@@ -27,18 +29,23 @@ $$ f(\cdot) \sim \mathcal{GP}( \mu(\bm{x}; \bm{\theta}_\mu), k(\bm{x}, \bm{x}^{\
 
 where both mean and kernel function typically depend on hyperparameters $\bm{\theta}_\mu$ and $\bm{\theta}_k $.
 
-A standard method for learning the kernel hyperparameters is to maximise the marginal likelihood, the probability density of the observations given the hyperparameters. The marginal likelihood is computed by integrating over the values of $f$. Collecting inputs and outputs into $\bm{X} = (\bm{x}_i)_{i=1}^N$ and $\bm{Y} = (y_i)_{i=1}^N$, the logarithm of the marginal likelihood is given by
+A standard method for learning the kernel hyperparameters is to maximise the marginal likelihood, the probability density of the observations given the hyperparameters. The marginal likelihood is computed by integrating over the values of $f$. Collecting inputs and outputs into $\bm{X} = (\bm{x}\_i)\_{i=1}^N$ and $\bm{Y} = (y\_i)\_{i=1}^N$, the logarithm of the marginal likelihood is given by
+
 $$ \log (p(\bm{Y} \vert \bm{X}, \bm{\theta})) = -\frac{1}{2} (\bm{Y} - \bm{\mu})^{\top} (\bm{K}+\sigma_{n}^2 \bm{I})^{-1} (\bm{Y}-\bm{\mu}) \\
     - \frac{1}{2} \log (\vert \bm{K} + \sigma_{n}^{2} \bm{I} \vert) - \frac{N}{2} \log (2 \pi) , $$
-where the mean vector $\bm{\mu}$ collects $(\mu(\bm{x}_i))_{i=1}^N$ and the kernel matrix $\bm{K}$ is constructed from $k(\bm{x}_i, \bm{x}_j)$ evaluated on all pairs $i,j = 1,\dots,N$.
+
+where the mean vector $\bm{\mu}$ collects $(\mu(\bm{x}\_i))\_{i=1}^N$ and the kernel matrix $\bm{K}$ is constructed from $k(\bm{x}_i, \bm{x}_j)$ evaluated on all pairs $i,j = 1,\dots,N$.
 The hyperparameters of mean and kernel function and of the likelihood ($\sigma_n^2$) are collected in the hyperparameter vector $\bm{\theta}$.
 
-Maximising the log marginal likelihood w.r.t $\bm{\theta}$ then gives the Maximum Likelihood Estimate for the hyperparameter values. Assuming a Gaussian likelihood for $\bm{\epsilon}$, the posterior predictive distribution is tractable and can be used to calculate predictions for a new output $f_*$, given a new input $\bm{x}_*$, as
+Maximising the log marginal likelihood w.r.t $\bm{\theta}$ then gives the Maximum Likelihood Estimate for the hyperparameter values. Assuming a Gaussian likelihood for $\bm{\epsilon}$, the posterior predictive distribution is tractable and can be used to calculate predictions for a new output $f_{\*}$, given a new input $\bm{x}_{\*}$, as
+
 $$ p(f_*\vert \bm{Y},\bm{X},\bm{x}_*) = \mathcal{N}(f_*\vert \mu_*(\bm{x}_*), \sigma_{*}^2 (\bm{x}_*)).$$
 
 Predictions are computed using the predictive mean $\mu_*$, while the uncertainty associated with these predictions is quantified through the predictive variance $\sigma_{*}^2$:
+
 $$ \mu_*(\bm{x}_*) = \bm{k}_{*n}^{\top} (\bm{K}+ \sigma_n^2 \bm{I})^{-1} (\bm{y} - \bm{\mu}) + \mu(\bm{x}_*) , \\
 \sigma_{*}^2 (\bm{x}_*) = k_{**} - \bm{k}_{*n}^{\top} (\bm{K} + \sigma_n^2 \bm{I})^{-1} \bm{k}_{*n},$$
+
 where $\bm{k}_{*n} = [k(\bm{x}_*, \bm{x}_1), \dots, k(\bm{x}_*, \bm{x}_n)]^{\top} $ and $k_{**} = k(\bm{x}_*,\bm{x}_*)$.
 
 ### 2.1.2. Multi-task GP regression
@@ -58,7 +65,9 @@ where $K_f$ is a positive semi-definite (PSD) matrix that specifies the inter-ta
 For binary classification, we have a discrete target variable $t∈0,1$ that follows a Bernoulli distribution. We are interested in the probability $p(t=1 \vert a)=σ(a)$ where $σ$ is the logistic sigmoid function taking logit $a∈ℝ$ as argument. $p(t=0 \vert a)$ is given by $1−p(t=1 \vert a)$. Given observed targets $\bm{t}$ at points $\bm{X}$, our goal is to predict target $t_∗$ at point $\bm{x}_∗$ using the predictive distribution $p(t_∗=1 \vert \bm{x}_∗,\bm{X},\bm{t})$. Making the conditioning on input variables implicit, the notation of the predictive distribution simplifies to $p(t_∗=1∣\bm{t})$.
 
 The predictive distribution is given by:
+
 $$ p(t_∗=1 \vert \bm{t})=∫p(t_∗=1 \vert a_∗)p(a_∗ \vert \bm{t})da_∗$$
+
 This integral is analytically intractable. Two approximation are needed:
 1. First, $p(a_∗ \vert \bm{t})$ must be approximated with a Gaussian distribution.
 2. Second, $p(t_∗=1 \vert a_∗)=σ(a∗)$ must be approximated with the inverse probit function $Φ(a∗)$

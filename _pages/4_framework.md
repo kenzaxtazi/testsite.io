@@ -2,6 +2,8 @@
 permalink: /framework/
 title: "4. Framework"
 layout: archive
+sidebar:
+  nav: "sidebar"
 redirect_from:
 - /framework/
 - /framework.html

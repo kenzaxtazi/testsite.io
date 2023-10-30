@@ -1,4 +1,14 @@
-# 6. Case studies
+---
+permalink: /discussion/
+title: " 6. Case studies"
+layout: archive
+sidebar:
+  nav: "sidebar"
+redirect_from:
+
+- /case_studies/
+- /case_studies.html
+---
 
 The following section describes implementation details of four case studies. The case study code is in implemented in `GPytorch` and `GPflow` with all the code executable from `Jupyter` notebooks.
 
