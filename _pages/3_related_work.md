@@ -1,8 +1,7 @@
 ---
-permalink: /
+permalink: /related_work/
 title: "3. Related work"
 excerpt: " "
-author_profile: true
 redirect_from:
 - /related_work/
 - /related_work.html

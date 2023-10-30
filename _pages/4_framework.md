@@ -1,4 +1,12 @@
-# 4. Framework
+---
+permalink: /framework/
+title: "4. Framework"
+excerpt: " "
+author_profile: true
+redirect_from:
+- /framework/
+- /framework.html
+---
 
 <p align="center">
   <img src="figures/framework.png"  width="300"/>
