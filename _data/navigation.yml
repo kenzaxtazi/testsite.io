@@ -1,5 +1,8 @@
 # main links
 docs:
+    - title: "About"
+      url: _pages/about.md
+
     - title: "Introduction"
       url: _pages/1_introduction.md
       
