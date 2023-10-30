@@ -1,5 +1,7 @@
 # main links
-docs:
+
+sidebar:
+
     - title: "About"
       url: _pages/about.md
 
@@ -24,8 +26,6 @@ docs:
     - title: "Discussion"
       url: _pages/7_discussion.md
 
-sidebar:
-  nav: "docs"
 
   #   url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
   # - title: "About"
