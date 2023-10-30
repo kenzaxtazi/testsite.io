@@ -17,7 +17,7 @@ In the last few years, a number of packages to perform GP regression and classif
 
 [`GPFlow`](https://gpflow.org) builds on Tensorflow. The documentation is good and the library has many in-built variational approximations.
 
-[`GPyTorch`](https://gpytorch.ai) builds on Pytorch \citep{gardner2018gpytorch} The main difference with `GPFlow` is that `GPyTorch` provides GPU scaling. The documentation has steadily improved in recent years and the library has many built-in  variational approximation schemes and specialised solvers. Although the GP models are very customiseable, they are less intuitive to build than in the previously presented libraries.
+[`GPyTorch`](https://gpytorch.ai) builds on Pytorch. The main difference with `GPFlow` is that `GPyTorch` provides GPU scaling. The documentation has steadily improved in recent years and the library has many built-in  variational approximation schemes and specialised solvers. Although the GP models are very customiseable, they are less intuitive to build than in the previously presented libraries.
 
 [`GPJax`](https://docs.jaxgaussianprocesses.com) is a didactic GP library that also supports GPU acceleration and just-in-time compilation in Python. The authors seek to provide a flexible API as close as possible to how the underlying mathematics is written on paper to enable researchers to rapidly prototype and develop new ideas. `GPJax` also allows graph inputs.
 
