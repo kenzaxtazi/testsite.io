@@ -1,4 +1,12 @@
-# Introduction
+---
+permalink: /
+title: "Introduction"
+excerpt: " "
+author_profile: true
+redirect_from: 
+  - /introduction/
+  - /introduction.html
+---
 
 A Gaussian Process is a statistcal method that uses a probabilistic approach to model the relationship between variables. Unlike other methods, a Gaussian Process does not assume a specific functional form for the relationship between the variables. Instead, it models the relationship as a distribution over functions. This allows Gaussian Processes to capture complex and non-linear relationships between variables. GPs provide a relatively intuitive way of encoding domain knowledge through prior specification and kernel design, where the kernel determines the shape of the covariance matrix and therefore the shape of the predicted function. Most importantly, and unlike most machine learning algorithms, GPs give the principled measure of the uncertainty associated with each estimate. This uncertainty can be used to guide decision-making and to identify areas where additional data may be needed to improve the accuracy of the predictions. GPs are also more interpretable than deep learning methods. They typically have a small number of parameters that directly capture information about the data, like the length-scales of variation or time-scales of periodicity, unlike the weights of a neural network which have no direct physical correspondence.
 

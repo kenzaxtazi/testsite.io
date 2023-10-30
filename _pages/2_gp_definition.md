@@ -1,4 +1,12 @@
-# 2. Gaussian Processes
+---
+permalink: /
+title: " 2. Gaussian Processes"
+excerpt: " "
+author_profile: true
+redirect_from: 
+  - /gp/
+  - /gp.html
+---
 
 ## 2.1. Definitions
 
