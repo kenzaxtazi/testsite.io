@@ -126,7 +126,7 @@ GPs have a number of advantages that can make them a judicious choice over other
 
 It is also important to acknowledge the limitations of GPs. They struggle with:
 
-* __Large numbers of datapoints__. Training on datasets with $N \gtrsim 10^{4}$ becomes prohibitive \citep{deisenroth2015distributed, wang2019exact}. The computational complexity of covariance matrix inversion in the calculation of the log marginal likelihood and the predictions scales as $\mathcal{O}(N^3)$ ($\mathcal{O}(N^{3}M)$ for multitask regression). The memory for storing the matrices scales as $\mathcal{O}(N^2)$.
+* __Large numbers of datapoints__. Training on datasets with $N \gtrsim 10^{4}$ becomes prohibitive ([Deisenroth and Ng., 2015](https://arxiv.org/abs/1502.02843); [Wang et al., 2019](https://arxiv.org/abs/1903.08114)). The computational complexity of covariance matrix inversion in the calculation of the log marginal likelihood and the predictions scales as $\mathcal{O}(N^3)$ ($\mathcal{O}(N^{3}M)$ for multitask regression). The memory for storing the matrices scales as $\mathcal{O}(N^2)$.
 
 * __High-dimensional input spaces__. raining on datasets with $D \gtrsim 100$ becomes difficult due to the need to compute pair-wise elements of covariance function which scales as $\mathcal{O}(DN^2)$, e.g. they are not best-suited to images ([van der Wilk et al., 2017](https://papers.nips.cc/paper_files/paper/2017/hash/1c54985e4f95b7819ca0357c0cb9a09f-Abstract.html)).
 
@@ -137,8 +137,8 @@ It is also important to acknowledge the limitations of GPs. They struggle with:
 * __Misspecified model__. Here, misspecification refers to our belief, or lack thereof, in the proposed model to accurately represent the underlying patterns present in the data. In this case it is hard for the model to generate accurate results. For example, an inappropriate kernel function could be chosen for the covariance matrix (see Figure 2.1). Poorly specified models will not only produce a more inaccurate mean posterior distribution but also inaccurate confidence intervals and inappropriate samples ([Sollich,2001](https://arxiv.org/abs/cond-mat/0106475), [Sollich, 2004](https://link.springer.com/chapter/10.1007/11559887_12), [Brynjarsdottir et al., 2014](https://iopscience.iop.org/article/10.1088/0266-5611/30/11/114007)).
 
 <p align="center">
-  <img src="/_pages/figures/matern_misspecified.png"  width="500"/>
-  <img src="/_pages/figures/periodic_misspecified.png"  width="500"/>
+  <img src="figures/matern_misspecified.png"  width="500"/>
+  <img src="figures/periodic_misspecified.png"  width="500"/>
 </p>
 
 *Figure 2.1: GP fit for 10 data points sampled from the periodic function $\sin^2(x - 2.5)$ using a Matérn 3/2 kernel (top) and a periodic kernel (bottom). Although the mean posterior distributions are similar, the shape of the samples and confidence intervals are different. Adapted from [Scikit Learn, 2023](https://scikit-learn.org/stable/modules/gaussian_process.html).*

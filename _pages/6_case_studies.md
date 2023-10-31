@@ -1,11 +1,10 @@
 ---
-permalink: /cas_estudies/
+permalink: /case_studies/
 title: " 6. Case studies"
 layout: archive
 sidebar:
   nav: "sidebar"
 redirect_from:
-
 - /case_studies/
 - /case_studies.html
 ---
