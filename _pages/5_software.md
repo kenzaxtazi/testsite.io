@@ -25,6 +25,6 @@ In the last few years, a number of packages to perform GP regression and classif
 
 [`stheno`](https://github.com/wesselb/stheno) is an implementation of GP modelling in Python and Julia.  Similar to `GPJax` is an mathematically intuitive library but run by a small community. The Python library can be built on Tensorflow and PyTorch, therefore lends itself to, in the latter case, to more GPU scalability.
 
-[`GaussianProcesses.jl`](https://stor-i.github.io/GaussianProcesses.jl/latest/) is Julia based software package \citep{fairbrother2022gaussianprocesses}. It has many of the features of the other packages of other packages with the exception of multi-output GPs and GPU scaling.
+[`GaussianProcesses.jl`](https://stor-i.github.io/GaussianProcesses.jl/latest/) is Julia based software package. It has many of the features of the other packages of other packages with the exception of multi-output GPs and GPU scaling.
 
 Other noteworthy software libraries include and `Stan MCMC` (Python), `PyMC` (Python), `GPML` (MATLAB), and `GP Stuff` (MATLAB and R).

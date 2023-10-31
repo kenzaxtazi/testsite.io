@@ -1,5 +1,5 @@
 ---
-permalink: /discussion/
+permalink: /cas_estudies/
 title: " 6. Case studies"
 layout: archive
 sidebar:

@@ -41,12 +41,12 @@ Maximising the log marginal likelihood w.r.t $\bm{\theta}$ then gives the Maximu
 
 $$ p(f_*\vert \bm{Y},\bm{X},\bm{x}_*) = \mathcal{N}(f_*\vert \mu_*(\bm{x}_*), \sigma_{*}^2 (\bm{x}_*)).$$
 
-Predictions are computed using the predictive mean $\mu_*$, while the uncertainty associated with these predictions is quantified through the predictive variance $\sigma_{*}^2$:
+Predictions are computed using the predictive mean $\mu\_{\*}$, while the uncertainty associated with these predictions is quantified through the predictive variance $\sigma_{*}^2$:
 
 $$ \mu_*(\bm{x}_*) = \bm{k}_{*n}^{\top} (\bm{K}+ \sigma_n^2 \bm{I})^{-1} (\bm{y} - \bm{\mu}) + \mu(\bm{x}_*) , \\
 \sigma_{*}^2 (\bm{x}_*) = k_{**} - \bm{k}_{*n}^{\top} (\bm{K} + \sigma_n^2 \bm{I})^{-1} \bm{k}_{*n},$$
 
-where $\bm{k}_{*n} = [k(\bm{x}_*, \bm{x}_1), \dots, k(\bm{x}_*, \bm{x}_n)]^{\top} $ and $k_{**} = k(\bm{x}_*,\bm{x}_*)$.
+where $\bm{k}\_{\*n} = [k(\bm{x}\_\*, \bm{x}\_1), \dots, k(\bm{x}\_\*, \bm{x}\_n)]^{\top}$ and $k\_{\*\*} = k(\bm{x}\_\*,\bm{x}\_\*)$.
 
 ### 2.1.2. Multi-task GP regression
 
@@ -62,39 +62,47 @@ where $K_f$ is a positive semi-definite (PSD) matrix that specifies the inter-ta
 
 ### 2.1.3. GP classification
 
-For binary classification, we have a discrete target variable $t∈0,1$ that follows a Bernoulli distribution. We are interested in the probability $p(t=1 \vert a)=σ(a)$ where $σ$ is the logistic sigmoid function taking logit $a∈ℝ$ as argument. $p(t=0 \vert a)$ is given by $1−p(t=1 \vert a)$. Given observed targets $\bm{t}$ at points $\bm{X}$, our goal is to predict target $t_∗$ at point $\bm{x}_∗$ using the predictive distribution $p(t_∗=1 \vert \bm{x}_∗,\bm{X},\bm{t})$. Making the conditioning on input variables implicit, the notation of the predictive distribution simplifies to $p(t_∗=1∣\bm{t})$.
+For binary classification, we have a discrete target variable $t∈0,1$ that follows a Bernoulli distribution. We are interested in the probability $p(t=1 \vert a)=σ(a)$ where $σ$ is the logistic sigmoid function taking logit $a∈ℝ$ as argument. $p(t=0 \vert a)$ is given by $1−p(t=1 \vert a)$. Given observed targets $\bm{t}$ at points $\bm{X}$, our goal is to predict target $t_∗$ at point $\bm{x}\_\*$ using the predictive distribution $p(t\_\*=1 \vert \bm{x}\_\*,\bm{X},\bm{t})$. Making the conditioning on input variables implicit, the notation of the predictive distribution simplifies to $p(t\_\*=1∣\bm{t})$.
 
 The predictive distribution is given by:
 
-$$ p(t_∗=1 \vert \bm{t})=∫p(t_∗=1 \vert a_∗)p(a_∗ \vert \bm{t})da_∗$$
+$$ p(t_*=1 \vert \bm{t})=∫p(t_*=1 \vert a_*)p(a_∗ \vert \bm{t})da_∗$$
 
 This integral is analytically intractable. Two approximation are needed:
-1. First, $p(a_∗ \vert \bm{t})$ must be approximated with a Gaussian distribution.
-2. Second, $p(t_∗=1 \vert a_∗)=σ(a∗)$ must be approximated with the inverse probit function $Φ(a∗)$
+1. First, $p(a_\* \vert \bm{t})$ must be approximated with a Gaussian distribution.
+2. Second, $p(t_\*=1 \vert a_∗)=σ(a_\*)$ must be approximated with the inverse probit function $Φ(a_*)$
 
-Let’s start with $p(a_∗∣t)$ which can be defined as:
+Let’s start with $p(a\_\* \vert t)$ which can be defined as:
+
 $$ p(a_∗\vert \bm{t})=∫p(a_∗\vert\bm{a})p(\bm{a} \vert \bm{t})d\bm{a}$$
-The first term inside the integral, $p(\bm{a}∗ \vert \bm{a})$, is a Gaussian distribution that can be obtained using a GP for regression. The joint distribution over logits $p(\bm{a}, a∗ \vert \bm{X},\bm{x}∗)$ can be turned into a conditional distribution $p(a_∗ \vert \bm{x}_∗,\bm{X},\bm{a})$. Making the conditioning on input variables implicit gives $p(a_∗∣\bm{a})$.
+
+The first term inside the integral, $p(\bm{a}\_* \vert \bm{a})$, is a Gaussian distribution that can be obtained using a GP for regression. The joint distribution over logits $p(\bm{a}, a\_\* \vert \bm{X},\bm{x}\_\*)$ can be turned into a conditional distribution $p(a\_\*\vert \bm{x}\_\*,\bm{X},\bm{a})$. Making the conditioning on input variables implicit gives $p(a\_\*\vert\bm{a})$.
 
 Using the Laplace approximation, the posterior distribution $p(a∣t)$ can be approximated with a Gaussian distribution $q(a)$:
+
 $$ q(\bm{a})=\mathcal{N} (\bm{a}\vert\hat{\bm{a}} ,\bm{H}^{−1})$$
-where $\bm{H} = \bm{W} +(\bm{K} + \sigma_a^2 \bm{I})^{−1}$. W is a diagonal matrix with elements $σ(a_n)(1−σ(a_n))$ with an being the elements of $\bm{a}$. Written in vector notation the diagonal is $\bm{σ}(1−\bm{σ})$.
+
+where $\bm{H} = \bm{W} +(\bm{K} + \sigma_a^2 \bm{I})^{−1}$. $W$ is a diagonal matrix with elements $σ(a_n)(1−σ(a_n))$ with an being the elements of $\bm{a}$. Written in vector notation the diagonal is $\bm{σ}(1−\bm{σ})$.
 
 The mean $\hat{\bm{a}}$ can be obtained iteratively with the following update equation:
+
 $$a^{\text{new}} = \bm{K}_a(\bm{I}+\bm{W}\bm{K}_a)−1(\bm{t}−\bm{σ}+W \bm{a}) \quad \text{where} \quad \bm{K}_a = \bm{K} + \sigma_a^2 \bm{I}$$
+
 At convergence $\hat{\bm{a}} = \bm{a}^\text{new}$.
 
-With two Gaussians inside the integral, the result is also a Gaussian and can be obtained analytically. The Gaussian approximation of $p(a∗∣t)$ is therefore given by:
-$$ p(a_∗ \vert \bm{t})≈\mathcal{N}(a_∗∣μ_{a∗},σ^2_{a∗})$$
+With two Gaussians inside the integral, the result is also a Gaussian and can be obtained analytically. The Gaussian approximation of $p(a_* \vert t)$ is therefore given by:
+
+$$ p(a_*\vert \bm{t})≈\mathcal{N}(a_* \vert μ_{a∗},σ^2_{a∗})$$
 
 with
-$$
-μ_{a∗}=\bm{k}^T_∗(\bm{t}−\bm{σ})\\
-σ^2_{a∗} = k_{∗∗}−\bm{k}^T_∗(\bm{W}^{-1}+\bm{K}_a)^{−1} \bm{k}_∗ \\
-$$
 
-Finally, we approximate $p(t∗=1∣a∗)$ with the inverse probit function $Φ(a∗)$ so that the predictive distribution can be approximated with:
-$$ p(t∗=1 \vert \bm{t})≈ σ(μ_{a∗}(1+ πσ^2_{a∗}/8)^{−1/2})$$
+$$ μ_{a∗}=\bm{k}^\top_∗(\bm{t}−\bm{σ}) $$
+
+$$ σ^2_{a∗} = k_{∗∗}−\bm{k}^\top_∗(\bm{W}^{-1}+\bm{K}_a)^{−1} \bm{k}_∗ $$
+
+Finally, we approximate $p(t_*=1 \vert a_*)$ with the inverse probit function $Φ(a_*)$ so that the predictive distribution can be approximated with:
+
+$$ p(t_∗=1 \vert \bm{t})≈ σ(μ_{a∗}(1+ πσ^2_{a*}/8)^{−1/2})$$
 
 ---
 
@@ -126,8 +134,11 @@ It is also important to acknowledge the limitations of GPs. They struggle with:
 
 * __Non-Gaussian distributions__. While Gaussian prior and likelihood function assumptions are quite common in classical scientific computing techniques, modern models, such as deep generative models, are increasingly moving towards modelling the target prior/posterior distributions using more flexible distributions parameterised by deep neural networks, like normalising flows ([Korshunova et al., 2018](https://arxiv.org/abs/1802.07535); [Casale et al., 2018](https://arxiv.org/abs/1810.11738)). These models avoid explicit handcrafted assumptions about the data or model and enable less biased Bayesian inference.
 
-* __Misspecified model__. Here, misspecification refers to our belief, or lack thereof, in the proposed model to accurately represent the underlying patterns present in the data. In this case it is hard for the model to generate accurate results. For example, an inappropriate kernel function could be chosen for the covariance matrix (see Figure 2). Poorly specified models will not only produce a more inaccurate mean posterior distribution but also inaccurate confidence intervals and inappropriate samples ([Sollich,2001](https://arxiv.org/abs/cond-mat/0106475), [Sollich, 2004](https://link.springer.com/chapter/10.1007/11559887_12), [Brynjarsdottir et al., 2014](https://iopscience.iop.org/article/10.1088/0266-5611/30/11/114007)).
+* __Misspecified model__. Here, misspecification refers to our belief, or lack thereof, in the proposed model to accurately represent the underlying patterns present in the data. In this case it is hard for the model to generate accurate results. For example, an inappropriate kernel function could be chosen for the covariance matrix (see Figure 2.1). Poorly specified models will not only produce a more inaccurate mean posterior distribution but also inaccurate confidence intervals and inappropriate samples ([Sollich,2001](https://arxiv.org/abs/cond-mat/0106475), [Sollich, 2004](https://link.springer.com/chapter/10.1007/11559887_12), [Brynjarsdottir et al., 2014](https://iopscience.iop.org/article/10.1088/0266-5611/30/11/114007)).
 
-![matern_misspecified](figures/matern_misspecified.png)
-![periodic_misspecified](figures/periodic_misspecified.png)
-*GP fit for 10 data points sampled from the periodic function $ \sin^2(x - 2.5)$ using a Matérn 3/2 kernel (top) and a periodic kernel (bottom). Although the mean posterior distributions are similar, the shape of the samples and confidence intervals are different. Adapted from [Scikit Learn, 2023](https://scikit-learn.org/stable/modules/gaussian_process.html)*
+<p align="center">
+  <img src="/_pages/figures/matern_misspecified.png"  width="500"/>
+  <img src="/_pages/figures/periodic_misspecified.png"  width="500"/>
+</p>
+
+*Figure 2.1: GP fit for 10 data points sampled from the periodic function $\sin^2(x - 2.5)$ using a Matérn 3/2 kernel (top) and a periodic kernel (bottom). Although the mean posterior distributions are similar, the shape of the samples and confidence intervals are different. Adapted from [Scikit Learn, 2023](https://scikit-learn.org/stable/modules/gaussian_process.html).*

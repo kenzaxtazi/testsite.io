@@ -10,7 +10,7 @@ redirect_from:
 ---
 
 <p align="center">
-  <img src="figures/framework.png"  width="300"/>
+  <img src="/_pages/figures/framework.png"  width="300"/>
 </p>
 
 ## Step 1: Problem definition
@@ -30,11 +30,11 @@ The next step is to perform an initial exploration of the data in order to under
 Further considerations:
 
 * We propose a range of values for the upper limit of $N$. This is because the limit will depend on how the model is used. Higher $N$ can be used for one-off modelling rather than learning hyperparameters through repeated likelihood evaluation.
-* Above these limits, it is worth considering the use of a GP as a wrapper for a deep learning model ([Sun et al., 2022](https://hess.copernicus.org/articles/26/5163/2022/hess-26-5163-2022.html)). In this case, a deep learning model can be trained on a large subset of the data. The inputs to the GP can be the output from the deep learning model or their residuals. The GP could also be used to refine the predictions for specific locations in the input feature space using held-out data. This will then yield uncertainties which can be used for uncertainty quantification, active learning, etc.. $^\dag$
+* Above these limits, it is worth considering the use of a GP as a wrapper for a deep learning model ([Sun et al., 2022](https://hess.copernicus.org/articles/26/5163/2022/hess-26-5163-2022.html)). In this case, a deep learning model can be trained on a large subset of the data. The inputs to the GP can be the output from the deep learning model or their residuals. The GP could also be used to refine the predictions for specific locations in the input feature space using held-out data. This will then yield uncertainties which can be used for uncertainty quantification, active learning, etc.. $^{\dagger}$
 * It may be acceptable to work in the top end of the dimension range if only a few dimensions are doing most of the predictive work. Furthermore, it is also possible to select or generate a set of lower dimensional features to feed into the model using decision trees such as Random Forests or dimensionality reduction methods such as Principal Component Analysi ([Binois and Wycoff, 2022](https://arxiv.org/abs/2111.05040)).
 * For large datasets (see Step 5), two approaches are possible. In the first case, the data can be divided into chunks, independent GPs or `GP experts' applied are then to each part and predictions are made using a (robust) Bayesian Committee Machine ([Tresp, 2000](https://www.dbs.ifi.lmu.de/~tresp/papers/bcm6.pdf); [Deisenroth and Ng, 2015](https://arxiv.org/abs/1502.02843)}. In the second case and conditional on specific structure, scaling GP methods can be also applied.
 
-$^dag$ If the models are not trained jointly, the procedure will result in overfitting and the residuals will go to zero with the GP collapsing to 0 uncertainty. If the GP is fit on the training data (and not the just the held-out data) using a neural network will be more likely to result in overfitting since the model might fit the data perfectly even before applying the GP.
+$^{\dagger}$ If the models are not trained jointly, the procedure will result in overfitting and the residuals will go to zero with the GP collapsing to 0 uncertainty. If the GP is fit on the training data (and not the just the held-out data) using a neural network will be more likely to result in overfitting since the model might fit the data perfectly even before applying the GP.
 
 ## Step 3: Domain expertise
 
@@ -51,7 +51,9 @@ When working with a large dataset, the modeller should also analyse the training
 * __Case 1__: Oversampled functions. An oversampled function is sampled more frequently than is required to capture its underlying structure and variation. In the case of a periodic function this would be more than the Nyquist frequency. In this situation, the modeller can use sparse GP regression with variational inference of inducing points ([Titsias, 2009](https://proceedings.mlr.press/v5/titsias09a.html)). Many GP libraries, such [`GPflow`](https://gpflow.org) or [`GPyTorch`](https://gpytorch.ai), offer built-in functions to perform this approximation.
 * __Case 2__: Timeseries data. For timeseries data, the GP can be mapped to a Stochastic Differential Equation (SDE) ([Hartikainen, 2010](https://ieeexplore.ieee.org/document/5589113)). This approximation has a linear cost in the number of time points and works well in many situations. However the mapping between the covariance matrix and the SDE can be expensive, sometimes more expensive than solving SDE itself. [`TemporalGPs.jl`](https://github.com/JuliaGaussianProcesses/TemporalGPs.jl), a package Julia, provides a framework to apply this method.
 * __Case 3__: Kronecker product structure. For such dataset with the following kernel structure, such as gridded data:
+
     $$\text{Cov}\biggl(\begin{bmatrix} x_1 \\ x_2  \end{bmatrix} \begin{bmatrix} x_1^{\prime} \\ x_2^{\prime}\end{bmatrix} \biggl)=\text{Cov}(x_1,x_1^{\prime} )\otimes \text{Cov}(x_2,x_2^{\prime}),$$
+
     the Kronecker identity can be used to invert the matrices in a piecewise fashion ([Saatcci et al., 2012](https://mlg.eng.cam.ac.uk/pub/pdf/Saa11.pdf)). This trick is used in the Structured Kernel interpolation (SKI) ([Wilson and Nickish, 2015](https://proceedings.mlr.press/v37/wilson15.html)). Both SKI and SKIP are implementable in [`GPyTorch`](https://gpytorch.ai).
 
 If no structure is apparent, a baseline that is hard to beat is to the divide the data into smaller datasets, as previously mentioned. This can be done naively by separating data chronologically or into tiles. However, it can be useful to make use of clustering algorithms, such as k-means or k-nearest neighbours, to group features that exhibit similar properties.
