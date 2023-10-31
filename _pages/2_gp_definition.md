@@ -137,8 +137,8 @@ It is also important to acknowledge the limitations of GPs. They struggle with:
 * __Misspecified model__. Here, misspecification refers to our belief, or lack thereof, in the proposed model to accurately represent the underlying patterns present in the data. In this case it is hard for the model to generate accurate results. For example, an inappropriate kernel function could be chosen for the covariance matrix (see Figure 2.1). Poorly specified models will not only produce a more inaccurate mean posterior distribution but also inaccurate confidence intervals and inappropriate samples ([Sollich,2001](https://arxiv.org/abs/cond-mat/0106475), [Sollich, 2004](https://link.springer.com/chapter/10.1007/11559887_12), [Brynjarsdottir et al., 2014](https://iopscience.iop.org/article/10.1088/0266-5611/30/11/114007)).
 
 <p align="center">
-  <img src="/images/matern_misspecified.png"  width="500"/>
-  <img src="/images/periodic_misspecified.png"  width="500"/>
+  <img src="/testsite.io/images/matern_misspecified.png"  width="500"/>
+  <img src="/testsite.io/images/periodic_misspecified.png"  width="500"/>
 </p>
 
 *Figure 2.1: GP fit for 10 data points sampled from the periodic function $\sin^2(x - 2.5)$ using a Matérn 3/2 kernel (top) and a periodic kernel (bottom). Although the mean posterior distributions are similar, the shape of the samples and confidence intervals are different. Adapted from [Scikit Learn, 2023](https://scikit-learn.org/stable/modules/gaussian_process.html).*
