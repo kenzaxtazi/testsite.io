@@ -10,7 +10,7 @@ redirect_from:
 ---
 
 <p align="center">
-  <img src="/images/framework.png"  width="300"/>
+  <img src="testsite.io/images/framework.png"  width="300"/>
 </p>
 
 ## Step 1: Problem definition
