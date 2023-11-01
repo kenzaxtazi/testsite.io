@@ -31,8 +31,9 @@ where both mean and kernel function typically depend on hyperparameters $\bm{\th
 
 A standard method for learning the kernel hyperparameters is to maximise the marginal likelihood, the probability density of the observations given the hyperparameters. The marginal likelihood is computed by integrating over the values of $f$. Collecting inputs and outputs into $\bm{X} = (\bm{x}\_i)\_{i=1}^N$ and $\bm{Y} = (y\_i)\_{i=1}^N$, the logarithm of the marginal likelihood is given by
 
-$$ \log (p(\bm{Y} \vert \bm{X}, \bm{\theta})) = -\frac{1}{2} (\bm{Y} - \bm{\mu})^{\top} (\bm{K}+\sigma_{n}^2 \bm{I})^{-1} (\bm{Y}-\bm{\mu}) \\
-    - \frac{1}{2} \log (\vert \bm{K} + \sigma_{n}^{2} \bm{I} \vert) - \frac{N}{2} \log (2 \pi) , $$
+$$ \log (p(\bm{Y} \vert \bm{X}, \bm{\theta})) = -\frac{1}{2} (\bm{Y} - \bm{\mu})^{\top} (\bm{K}+\sigma_{n}^2 \bm{I})^{-1} (\bm{Y}-\bm{\mu}) $$
+
+$$ - \frac{1}{2} \log (\vert \bm{K} + \sigma_{n}^{2} \bm{I} \vert) - \frac{N}{2} \log (2 \pi) , $$
 
 where the mean vector $\bm{\mu}$ collects $(\mu(\bm{x}\_i))\_{i=1}^N$ and the kernel matrix $\bm{K}$ is constructed from $k(\bm{x}_i, \bm{x}_j)$ evaluated on all pairs $i,j = 1,\dots,N$.
 The hyperparameters of mean and kernel function and of the likelihood ($\sigma_n^2$) are collected in the hyperparameter vector $\bm{\theta}$.
@@ -43,8 +44,9 @@ $$ p(f_*\vert \bm{Y},\bm{X},\bm{x}_*) = \mathcal{N}(f_*\vert \mu_*(\bm{x}_*), \s
 
 Predictions are computed using the predictive mean $\mu\_{\*}$, while the uncertainty associated with these predictions is quantified through the predictive variance $\sigma_{*}^2$:
 
-$$ \mu_*(\bm{x}_*) = \bm{k}_{*n}^{\top} (\bm{K}+ \sigma_n^2 \bm{I})^{-1} (\bm{y} - \bm{\mu}) + \mu(\bm{x}_*) , \\
-\sigma_{*}^2 (\bm{x}_*) = k_{**} - \bm{k}_{*n}^{\top} (\bm{K} + \sigma_n^2 \bm{I})^{-1} \bm{k}_{*n},$$
+$$ \mu_*(\bm{x}_*) = \bm{k}_{*n}^{\top} (\bm{K}+ \sigma_n^2 \bm{I})^{-1} (\bm{y} - \bm{\mu}) + \mu(\bm{x}_*),$$
+
+$$ \sigma_{*}^2 (\bm{x}_*) = k_{**} - \bm{k}_{*n}^{\top} (\bm{K} + \sigma_n^2 \bm{I})^{-1} \bm{k}_{*n},$$
 
 where $\bm{k}\_{\*n} = [k(\bm{x}\_\*, \bm{x}\_1), \dots, k(\bm{x}\_\*, \bm{x}\_n)]^{\top}$ and $k\_{\*\*} = k(\bm{x}\_\*,\bm{x}\_\*)$.
 
@@ -69,6 +71,7 @@ The predictive distribution is given by:
 $$ p(t_*=1 \vert \bm{t})=∫p(t_*=1 \vert a_*)p(a_∗ \vert \bm{t})da_∗$$
 
 This integral is analytically intractable. Two approximation are needed:
+
 1. First, $p(a_\* \vert \bm{t})$ must be approximated with a Gaussian distribution.
 2. Second, $p(t_\*=1 \vert a_∗)=σ(a_\*)$ must be approximated with the inverse probit function $Φ(a_*)$
 
@@ -86,9 +89,9 @@ where $\bm{H} = \bm{W} +(\bm{K} + \sigma_a^2 \bm{I})^{−1}$. $W$ is a diagonal 
 
 The mean $\hat{\bm{a}}$ can be obtained iteratively with the following update equation:
 
-$$a^{\text{new}} = \bm{K}_a(\bm{I}+\bm{W}\bm{K}_a)−1(\bm{t}−\bm{σ}+W \bm{a}) \quad \text{where} \quad \bm{K}_a = \bm{K} + \sigma_a^2 \bm{I}$$
+$$a^{\text{new}} = \bm{K}_a(\bm{I}+\bm{W}\bm{K}_a)−1(\bm{t}−\bm{σ}+W \bm{a})$$
 
-At convergence $\hat{\bm{a}} = \bm{a}^\text{new}$.
+where $$ \bm{K}_a = \bm{K} + \sigma_a^2 \bm{I}$$. At convergence $\hat{\bm{a}} = \bm{a}^\text{new}$.
 
 With two Gaussians inside the integral, the result is also a Gaussian and can be obtained analytically. The Gaussian approximation of $p(a_* \vert t)$ is therefore given by:
 
