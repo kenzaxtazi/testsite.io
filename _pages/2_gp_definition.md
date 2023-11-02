@@ -60,7 +60,7 @@ Given a set of observations $\bm{y}_o$, which is a subset of $\bm{y}$, we want t
 
 $$ ⟨f_l(\bm{x})f_k(\bm{x}')⟩ = K^{f}_{lk} k^x(\bm{x},\bm{x}') \quad y_{il} ∼ \mathcal{N}(f_l(x_i),σ_{l}^2),$$
 
-where $K_f$ is a positive semi-definite (PSD) matrix that specifies the inter-task similarities, $k_x$ is a covariance function over inputs, and $σ_l^2$ is the noise variance for the lth task. Below we focus on stationary covariance functions kx; hence, to avoid redundancy in the parametrization, we further let kx be only a correlation function (i.e. it is constrained to have unit variance), since the variance can be explained fully by $K_f$ .
+where $K_f$ is a positive semi-definite (PSD) matrix that specifies the inter-task similarities, $k_x$ is a covariance function over inputs, and $σ_l^2$ is the noise variance for the lth task. Below we focus on stationary covariance functions $k^x$; hence, to avoid redundancy in the parametrization, we further let $k^x$ be only a correlation function (i.e. it is constrained to have unit variance), since the variance can be explained fully by $K_f$ .
 
 ### 2.1.3. GP classification
 
